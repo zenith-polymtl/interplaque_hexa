@@ -1,0 +1,526 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2025-12-24</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13:16:37</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc" class="file"><acronym title="D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc">D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">62</td></tr>
+</table>
+</td>
+</table><a name="IDZANYAUIRM0IANOQ24ANT2COXXJ3ZGSOBYU3H33IMMHLMBHOVQGLP"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQEVQ44MZ0EPDHL5H4530BJLKJJ4HATOONUKWYLC0A0ZVTLFMSSSC">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPFNTQ0B3PG3MCGEY0EERFKLTJMHRKSQS50QZCCMZXZUOYIS0RTLF">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID41F0KK3HLDP5R5DMGALAHOVBFLPHHAL2X5IOOHDJGVCL0OHD3QF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZDXIRNVTDGGNCK55V5BMC4TDZER3QX2JISW02EI4RAKFWJLIJHEP">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZWRM4H1PP5TEOTZF4DRBGNLBIX3ENOI3VEKF2CIOTU1HIU0OO3I">Width Constraint (Min=0.3mm) (Max=0.5mm) (Preferred=0.4mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCEH12HXNFAFZEMWYE2G3N43FHBIMOXHUMATC3KX2SGE3FWUPMDK">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFPVBTUEY5PXPWLWQDRHRUTFEHEW0KFNFO4LQ2HGURGYTGKLPBND">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIT0VQCTCWE5OPTJS4OKSPPSZDPQPJ5GH3HJQWLDYAFRWZIA0Y5JD">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBCWU24450BTHET0GXAWTETUS1LU0GIRN5CEG3RKZ3KRUKTSMIBD">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEKBLLS2P10HUGCRTHVZ3E5PTRCCB4YAHVMEYZLP3ATY5VKWYUDCB">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">32</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0BDGEYMNDD4KDXMTG00L2YCX2IEXUOGK22HLA5H3PFPPZBEASJLL">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">26</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEPREHMBHW00ZMP0DLRTU5H4XVKQXTX4FPF4Y5DOYCPBTT5ZJIR3">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIXWFQIBLAAALCKDY0MFZQC1M1NPBQQXR4RDV1UDXKXXXPTRYLGVI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5KXK1NUO0EV2FTVIC15ONNS5AD1E20ARXSC5GBJSNA3NUZZAR5QN">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">62</td>
+</tr>
+</table><br><a name="IDIT0VQCTCWE5OPTJS4OKSPPSZDPQPJ5GH3HJQWLDYAFRWZIA0Y5JD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3450.163mil|Location2.X=3577.397mil|Location1.Y=1961.381mil|Location2.Y=2088.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3450.163mil|Location2.X=3577.397mil|Location1.Y=1961.381mil|Location2.Y=2088.615mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-MTH1(-21.11mm,11.658mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.619mil|Location2.X=3573.854mil|Location1.Y=1051.617mil|Location2.Y=1178.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3446.619mil|Location2.X=3573.854mil|Location1.Y=1051.617mil|Location2.Y=1178.851mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-MTH2(-21.2mm,-11.45mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5115.911mil|Location2.X=5243.145mil|Location1.Y=1051.617mil|Location2.Y=1178.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5115.911mil|Location2.X=5243.145mil|Location1.Y=1051.617mil|Location2.Y=1178.851mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-MTH3(21.2mm,-11.45mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5115.911mil|Location2.X=5243.145mil|Location1.Y=1958.192mil|Location2.Y=2085.426mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5115.911mil|Location2.X=5243.145mil|Location1.Y=1958.192mil|Location2.Y=2085.426mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-MTH4(21.2mm,11.577mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEKBLLS2P10HUGCRTHVZ3E5PTRCCB4YAHVMEYZLP3ATY5VKWYUDCB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.196mil|Location2.X=4164.446mil|Location1.Y=1964.373mil|Location2.Y=1975.623mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.196mil|Location2.X=4164.446mil|Location1.Y=1964.373mil|Location2.Y=1975.623mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.233mm &lt; 0.254mm) Between Pad 4PIN 3-1(-5.794mm,10.007mm) on Bottom Layer And Via (-3.983mm,10.261mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.233mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.142mil|Location2.X=4164.392mil|Location1.Y=1898.289mil|Location2.Y=1909.539mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.142mil|Location2.X=4164.392mil|Location1.Y=1898.289mil|Location2.Y=1909.539mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.23mm &lt; 0.254mm) Between Pad 4PIN 3-2(-5.794mm,8.757mm) on Bottom Layer And Via (-3.986mm,8.582mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.23mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.16mil|Location2.X=4164.41mil|Location1.Y=1839.887mil|Location2.Y=1851.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.16mil|Location2.X=4164.41mil|Location1.Y=1839.887mil|Location2.Y=1851.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.231mm &lt; 0.254mm) Between Pad 4PIN 3-3(-5.794mm,7.507mm) on Bottom Layer And Via (-3.986mm,7.058mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.231mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.148mil|Location2.X=4164.398mil|Location1.Y=1777.407mil|Location2.Y=1788.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.148mil|Location2.X=4164.398mil|Location1.Y=1777.407mil|Location2.Y=1788.657mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.231mm &lt; 0.254mm) Between Pad 4PIN 4-MP2(-6.344mm,4.907mm) on Top Layer And Via (-3.986mm,5.534mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.231mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.375mil|Location2.X=4270.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4259.375mil|Location2.X=4270.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-1.521mm,-4.344mm) from Top Layer to Bottom Layer And Via (-2.537mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.375mil|Location2.X=3910.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3899.375mil|Location2.X=3910.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-10.665mm,-4.344mm) from Top Layer to Bottom Layer And Via (-11.681mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3939.375mil|Location2.X=3950.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-10.665mm,-4.344mm) from Top Layer to Bottom Layer And Via (-9.649mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3859.375mil|Location2.X=3870.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3859.375mil|Location2.X=3870.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-11.681mm,-4.344mm) from Top Layer to Bottom Layer And Via (-12.697mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3819.375mil|Location2.X=3830.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3819.375mil|Location2.X=3830.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-12.697mm,-4.344mm) from Top Layer to Bottom Layer And Via (-13.713mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3779.375mil|Location2.X=3790.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3779.375mil|Location2.X=3790.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-13.713mm,-4.344mm) from Top Layer to Bottom Layer And Via (-14.729mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.375mil|Location2.X=3750.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.375mil|Location2.X=3750.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-14.729mm,-4.344mm) from Top Layer to Bottom Layer And Via (-15.745mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.375mil|Location2.X=3710.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.375mil|Location2.X=3710.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-15.745mm,-4.344mm) from Top Layer to Bottom Layer And Via (-16.761mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4219.375mil|Location2.X=4230.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4219.375mil|Location2.X=4230.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-2.537mm,-4.344mm) from Top Layer to Bottom Layer And Via (-3.553mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.375mil|Location2.X=4190.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4179.375mil|Location2.X=4190.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-3.553mm,-4.344mm) from Top Layer to Bottom Layer And Via (-4.569mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4139.375mil|Location2.X=4150.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4139.375mil|Location2.X=4150.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-4.569mm,-4.344mm) from Top Layer to Bottom Layer And Via (-5.585mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4099.375mil|Location2.X=4110.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4099.375mil|Location2.X=4110.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-5.585mm,-4.344mm) from Top Layer to Bottom Layer And Via (-6.601mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4059.375mil|Location2.X=4070.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4059.375mil|Location2.X=4070.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-6.601mm,-4.344mm) from Top Layer to Bottom Layer And Via (-7.617mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.375mil|Location2.X=4030.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4019.375mil|Location2.X=4030.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-7.617mm,-4.344mm) from Top Layer to Bottom Layer And Via (-8.633mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.375mil|Location2.X=3990.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3979.375mil|Location2.X=3990.625mil|Location1.Y=1389.375mil|Location2.Y=1400.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (-8.633mm,-4.344mm) from Top Layer to Bottom Layer And Via (-9.649mm,-4.344mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1559.375mil|Location2.Y=1570.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1559.375mil|Location2.Y=1570.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,0.482mm) from Top Layer to Bottom Layer And Via (8.766mm,-0.534mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1599.375mil|Location2.Y=1610.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1599.375mil|Location2.Y=1610.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,0.482mm) from Top Layer to Bottom Layer And Via (8.766mm,1.498mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1519.375mil|Location2.Y=1530.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-0.534mm) from Top Layer to Bottom Layer And Via (8.766mm,-1.55mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1479.375mil|Location2.Y=1490.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1479.375mil|Location2.Y=1490.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-1.55mm) from Top Layer to Bottom Layer And Via (8.766mm,-2.566mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1119.375mil|Location2.Y=1130.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1119.375mil|Location2.Y=1130.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-10.694mm) from Top Layer to Bottom Layer And Via (8.766mm,-11.71mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1159.375mil|Location2.Y=1170.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1159.375mil|Location2.Y=1170.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-10.694mm) from Top Layer to Bottom Layer And Via (8.766mm,-9.678mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1439.375mil|Location2.Y=1450.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1439.375mil|Location2.Y=1450.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-2.566mm) from Top Layer to Bottom Layer And Via (8.766mm,-3.582mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1399.375mil|Location2.Y=1410.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1399.375mil|Location2.Y=1410.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-3.582mm) from Top Layer to Bottom Layer And Via (8.766mm,-4.598mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1359.375mil|Location2.Y=1370.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1359.375mil|Location2.Y=1370.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-4.598mm) from Top Layer to Bottom Layer And Via (8.766mm,-5.614mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1319.375mil|Location2.Y=1330.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1319.375mil|Location2.Y=1330.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-5.614mm) from Top Layer to Bottom Layer And Via (8.766mm,-6.63mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1279.375mil|Location2.Y=1290.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1279.375mil|Location2.Y=1290.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-6.63mm) from Top Layer to Bottom Layer And Via (8.766mm,-7.646mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1239.375mil|Location2.Y=1250.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1239.375mil|Location2.Y=1250.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-7.646mm) from Top Layer to Bottom Layer And Via (8.766mm,-8.662mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1199.375mil|Location2.Y=1210.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4684.375mil|Location2.X=4695.625mil|Location1.Y=1199.375mil|Location2.Y=1210.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.143mm &lt; 0.254mm) Between Via (8.766mm,-8.662mm) from Top Layer to Bottom Layer And Via (8.766mm,-9.678mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.143mm] / [Bottom Solder] Mask Sliver [0.143mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0BDGEYMNDD4KDXMTG00L2YCX2IEXUOGK22HLA5H3PFPPZBEASJLL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4766.009mil|Location2.X=4777.259mil|Location1.Y=1530.084mil|Location2.Y=1541.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4766.009mil|Location2.X=4777.259mil|Location1.Y=1530.084mil|Location2.Y=1541.334mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.249mm &lt; 0.254mm) Between Arc (10.689mm,-0.77mm) on Top Overlay And Pad 8PIN-1(11.814mm,-0.761mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.249mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.741mil|Location2.X=4628.991mil|Location1.Y=1530.084mil|Location2.Y=1541.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.741mil|Location2.X=4628.991mil|Location1.Y=1530.084mil|Location2.Y=1541.334mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.249mm &lt; 0.254mm) Between Arc (7.224mm,-0.77mm) on Bottom Overlay And Pad 8 PIN-1(6.099mm,-0.761mm) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.249mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.403mil|Location2.X=3752.653mil|Location1.Y=1499.454mil|Location2.Y=1510.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.403mil|Location2.X=3752.653mil|Location1.Y=1499.454mil|Location2.Y=1510.704mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-1(-14.798mm,-1.748mm) on Top Layer And Track (-17.048mm,-1.548mm)(-15.373mm,-1.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.403mil|Location2.X=3752.653mil|Location1.Y=1272.564mil|Location2.Y=1283.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.403mil|Location2.X=3752.653mil|Location1.Y=1272.564mil|Location2.Y=1283.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-1(-14.798mm,-7.111mm) on Bottom Layer And Track (-17.048mm,-7.311mm)(-15.373mm,-7.311mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.828mil|Location2.X=4226.078mil|Location1.Y=1499.454mil|Location2.Y=1510.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.828mil|Location2.X=4226.078mil|Location1.Y=1499.454mil|Location2.Y=1510.704mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-10(-3.548mm,-1.748mm) on Top Layer And Track (-2.973mm,-1.548mm)(-1.298mm,-1.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.828mil|Location2.X=4226.078mil|Location1.Y=1272.564mil|Location2.Y=1283.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.828mil|Location2.X=4226.078mil|Location1.Y=1272.564mil|Location2.Y=1283.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-10(-3.548mm,-7.111mm) on Bottom Layer And Track (-2.973mm,-7.311mm)(-1.298mm,-7.311mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4288.154mil|Location2.X=4299.404mil|Location1.Y=1565.891mil|Location2.Y=1577.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4288.154mil|Location2.X=4299.404mil|Location1.Y=1565.891mil|Location2.Y=1577.141mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad 10PIN-MP1(-1.698mm,1.602mm) on Top Layer And Track (-1.298mm,-1.548mm)(-1.298mm,-0.023mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.276mil|Location2.X=4260.526mil|Location1.Y=1666.777mil|Location2.Y=1678.027mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.276mil|Location2.X=4260.526mil|Location1.Y=1666.777mil|Location2.Y=1678.027mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-MP1(-1.698mm,1.602mm) on Top Layer And Track (-15.873mm,2.702mm)(-2.473mm,2.702mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4288.154mil|Location2.X=4299.404mil|Location1.Y=1206.127mil|Location2.Y=1217.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4288.154mil|Location2.X=4299.404mil|Location1.Y=1206.127mil|Location2.Y=1217.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad 10PIN-MP1(-1.698mm,-10.461mm) on Bottom Layer And Track (-1.298mm,-8.836mm)(-1.298mm,-7.311mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.276mil|Location2.X=4260.526mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4249.276mil|Location2.X=4260.526mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-MP1(-1.698mm,-10.461mm) on Bottom Layer And Track (-15.873mm,-11.561mm)(-2.473mm,-11.561mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3706.954mil|Location2.X=3718.204mil|Location1.Y=1666.777mil|Location2.Y=1678.027mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3706.954mil|Location2.X=3718.204mil|Location1.Y=1666.777mil|Location2.Y=1678.027mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-MP2(-16.648mm,1.602mm) on Top Layer And Track (-15.873mm,2.702mm)(-2.473mm,2.702mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3668.076mil|Location2.X=3679.326mil|Location1.Y=1565.891mil|Location2.Y=1577.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3668.076mil|Location2.X=3679.326mil|Location1.Y=1565.891mil|Location2.Y=1577.141mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad 10PIN-MP2(-16.648mm,1.602mm) on Top Layer And Track (-17.048mm,-1.548mm)(-17.048mm,-0.023mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3706.954mil|Location2.X=3718.204mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3706.954mil|Location2.X=3718.204mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 10PIN-MP2(-16.648mm,-10.461mm) on Bottom Layer And Track (-15.873mm,-11.561mm)(-2.473mm,-11.561mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3668.076mil|Location2.X=3679.326mil|Location1.Y=1206.127mil|Location2.Y=1217.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3668.076mil|Location2.X=3679.326mil|Location1.Y=1206.127mil|Location2.Y=1217.377mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad 10PIN-MP2(-16.648mm,-10.461mm) on Bottom Layer And Track (-17.048mm,-8.836mm)(-17.048mm,-7.311mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4177.977mil|Location2.X=4189.227mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4177.977mil|Location2.X=4189.227mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 1 -MP1(-3.509mm,-10.461mm) on Top Layer And Track (-12.684mm,-11.561mm)(-4.284mm,-11.561mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3832.505mil|Location2.X=3843.755mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3832.505mil|Location2.X=3843.755mil|Location1.Y=1105.241mil|Location2.Y=1116.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 1 -MP2(-13.459mm,-10.461mm) on Top Layer And Track (-12.684mm,-11.561mm)(-4.284mm,-11.561mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4172.977mil|Location2.X=4184.227mil|Location1.Y=1670.714mil|Location2.Y=1681.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4172.977mil|Location2.X=4184.227mil|Location1.Y=1670.714mil|Location2.Y=1681.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 1-MP1(-3.636mm,1.702mm) on Bottom Layer And Track (-12.811mm,2.802mm)(-4.411mm,2.802mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3827.505mil|Location2.X=3838.755mil|Location1.Y=1670.714mil|Location2.Y=1681.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3827.505mil|Location2.X=3838.755mil|Location1.Y=1670.714mil|Location2.Y=1681.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 1-MP2(-13.586mm,1.702mm) on Bottom Layer And Track (-12.811mm,2.802mm)(-4.411mm,2.802mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4979.572mil|Location2.X=4990.822mil|Location1.Y=1185.969mil|Location2.Y=1197.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4979.572mil|Location2.X=4990.822mil|Location1.Y=1185.969mil|Location2.Y=1197.219mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 2-MP1(15.164mm,-10.098mm) on Bottom Layer And Track (16.264mm,-9.323mm)(16.264mm,-0.923mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.178mil|Location2.X=4400.428mil|Location1.Y=1185.969mil|Location2.Y=1197.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.178mil|Location2.X=4400.428mil|Location1.Y=1185.969mil|Location2.Y=1197.219mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 2-MP1(2.368mm,-10.098mm) on Top Layer And Track (1.268mm,-9.323mm)(1.268mm,-0.923mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4979.572mil|Location2.X=4990.822mil|Location1.Y=1531.442mil|Location2.Y=1542.692mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4979.572mil|Location2.X=4990.822mil|Location1.Y=1531.442mil|Location2.Y=1542.692mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 2-MP2(15.164mm,-0.148mm) on Bottom Layer And Track (16.264mm,-9.323mm)(16.264mm,-0.923mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.178mil|Location2.X=4400.428mil|Location1.Y=1531.442mil|Location2.Y=1542.692mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4389.178mil|Location2.X=4400.428mil|Location1.Y=1531.442mil|Location2.Y=1542.692mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad 6PIN 2-MP2(2.368mm,-0.148mm) on Top Layer And Track (1.268mm,-9.323mm)(1.268mm,-0.923mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4506.54mil|Location2.X=4517.79mil|Location1.Y=1097.367mil|Location2.Y=1108.617mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4506.54mil|Location2.X=4517.79mil|Location1.Y=1097.367mil|Location2.Y=1108.617mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad 8 PIN-MP1(2.749mm,-11.361mm) on Bottom Layer And Track (4.399mm,-11.761mm)(5.699mm,-11.761mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4506.54mil|Location2.X=4517.79mil|Location1.Y=1619.021mil|Location2.Y=1630.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4506.54mil|Location2.X=4517.79mil|Location1.Y=1619.021mil|Location2.Y=1630.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad 8 PIN-MP2(2.749mm,1.089mm) on Bottom Layer And Track (4.399mm,1.489mm)(5.699mm,1.489mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4877.21mil|Location2.X=4888.46mil|Location1.Y=1097.367mil|Location2.Y=1108.617mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4877.21mil|Location2.X=4888.46mil|Location1.Y=1097.367mil|Location2.Y=1108.617mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad 8PIN-MP1(15.164mm,-11.361mm) on Top Layer And Track (12.214mm,-11.761mm)(13.514mm,-11.761mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4877.21mil|Location2.X=4888.46mil|Location1.Y=1619.021mil|Location2.Y=1630.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\altium_zenith\PCB_inter\interplaque_hexa\pcb interplaque pixhawk\PCB_interplaqueV2\V2_PCB_interplaque_PixhawkPcbDoc.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4877.21mil|Location2.X=4888.46mil|Location1.Y=1619.021mil|Location2.Y=1630.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad 8PIN-MP2(15.164mm,1.089mm) on Top Layer And Track (12.214mm,1.489mm)(13.514mm,1.489mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
